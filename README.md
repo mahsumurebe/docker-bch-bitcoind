@@ -1,4 +1,4 @@
-Bitcoind for Docker
+Bitcoin Cash Daemon for Docker
 ===================
 
 [![Docker Stars](https://img.shields.io/docker/stars/mahsumurebe/bitcoin-cash.svg)](https://hub.docker.com/r/mahsumurebe/bitcoin-cash/)
@@ -6,7 +6,7 @@ Bitcoind for Docker
 [![Build Status](https://travis-ci.org/mahsumurebe/docker-bch-bitcoind.svg?branch=master)](https://travis-ci.org/mahsumurebe/docker-bch-bitcoind/)
 [![ImageLayers](https://images.microbadger.com/badges/image/mahsumurebe/bitcoin-cash.svg)](https://microbadger.com/#/images/mahsumurebe/bitcoin-cash)
 
-Docker image that runs the Bitcoin bitcoind node in a container for easy deployment.
+Docker image that runs the Bitcoin Bitcoin Cash node in a container for easy deployment.
 
 
 Requirements
@@ -27,7 +27,7 @@ One liner for Ubuntu 14.04 LTS machines with JSON-RPC enabled on localhost and a
 Quick Start
 -----------
 
-1. Create a `bitcoin-cash-data` volume to persist the bitcoind blockchain data, should exit immediately.  The `bitcoin-cash-data` container will store the blockchain when the node container is recreated (software upgrade, reboot, etc):
+1. Create a `bitcoin-cash-data` volume to persist the Bitcoin Cash Daemon blockchain data, should exit immediately.  The `bitcoin-cash-data` container will store the blockchain when the node container is recreated (software upgrade, reboot, etc):
 
         docker volume create --name=bitcoin-cash-data
         docker run -v bitcoin-cash-data:/bitcoin/.bitcoin --name=bitcoin-cash-node -d \
@@ -35,7 +35,7 @@ Quick Start
             -p 127.0.0.1:8332:8332 \
             mahsumurebe/bitcoin-cash
 
-2. Verify that the container is running and bitcoind node is downloading the blockchain
+2. Verify that the container is running and Bitcoin Cash node is downloading the blockchain
 
         $ docker ps
         CONTAINER ID        IMAGE                               COMMAND             CREATED             STATUS              PORTS                                              NAMES
