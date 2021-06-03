@@ -4,7 +4,7 @@
 #
 set -ex
 
-BTC_IMAGE=${BTC_IMAGE:-kylemanna/bitcoind}
+BTC_IMAGE=${BTC_IMAGE:-mahsumurebe/bitcoin-cash}
 
 distro=$1
 shift
@@ -35,8 +35,8 @@ if [ "$distro" = "trusty" -o "$distro" = "ubuntu:14.04" ]; then
 fi
 
 # Always clean-up, but fail successfully
-docker kill bitcoind-node 2>/dev/null || true
-docker rm bitcoind-node 2>/dev/null || true
+docker kill bitcoin-cash-node 2>/dev/null || true
+docker rm bitcoin-cash-node 2>/dev/null || true
 stop docker-bitcoind 2>/dev/null || true
 
 # Always pull remote images to avoid caching issues
@@ -45,13 +45,13 @@ if [ -z "${BTC_IMAGE##*/*}" ]; then
 fi
 
 # Initialize the data container
-docker volume create --name=bitcoind-data
-docker run -v bitcoind-data:/bitcoin --rm $BTC_IMAGE btc_init
+docker volume create --name=bitcoin-cash-data
+docker run -v bitcoin-cash-data:/bitcoin --rm $BTC_IMAGE btc_init
 
 # Start bitcoind via upstart and docker
-curl https://raw.githubusercontent.com/kylemanna/docker-bitcoind/master/upstart.init > /etc/init/docker-bitcoind.conf
+curl https://raw.githubusercontent.com/mahsumurebe/docker-bch-bitcoind/master/upstart.init > /etc/init/docker-bitcoind.conf
 start docker-bitcoind
 
 set +ex
 echo "Resulting bitcoin.conf:"
-docker run -v bitcoind-data:/bitcoin --rm $BTC_IMAGE cat /bitcoin/.bitcoin/bitcoin.conf
+docker run -v bitcoin-cash-data:/bitcoin --rm $BTC_IMAGE cat /bitcoin/.bitcoin/bitcoin.conf

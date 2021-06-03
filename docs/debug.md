@@ -7,17 +7,17 @@
 
 ## Viewing bitcoind Logs
 
-    docker logs bitcoind-node
+    docker logs bitcoin-cash-node
 
 
 ## Running Bash in Docker Container
 
 *Note:* This container will be run in the same way as the bitcoind node, but will not connect to already running containers or processes.
 
-    docker run -v bitcoind-data:/bitcoin --rm -it kylemanna/bitcoind bash -l
+    docker run -v bitcoin-cash-data:/bitcoin --rm -it mahsumurebe/bitcoin-cash bash -l
 
 You can also attach bash into running container to debug running bitcoind
 
-    docker exec -it bitcoind-node bash -l
+    docker exec -it bitcoin-cash-node bash -l
 
 

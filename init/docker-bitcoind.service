@@ -1,6 +1,6 @@
 [Unit]
-Description=Bitcoind Docker Container
-Documentation=https://github.com/kylemanna/docker-bitcoind
+Description=Bitcoin Cash Docker Container
+Documentation=https://github.com/mahsumurebe/docker-bch-bitcoind
 Requires=docker.service
 After=docker.service
 
@@ -9,9 +9,9 @@ RestartSec=10
 Restart=always
 
 # Modify IP6_PREFIX to match network config
-Environment="NAME=bitcoind"
-Environment="DATA_VOL=bitcoind-data"
-Environment="IMG=kylemanna/bitcoind:dev"
+Environment="NAME=bitcoin-cash-node"
+Environment="DATA_VOL=bitcoin-cash-data"
+Environment="IMG=mahsumurebe/bitcoin-cash:latest"
 Environment="PORT=8333:8333/tcp"
 
 # To override environment variables, use local configuration directory:
