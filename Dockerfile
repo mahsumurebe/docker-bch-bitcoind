@@ -23,13 +23,13 @@ ARG ARCH=x86_64
 # 2. Some package generates /etc/bitcoin.conf on install and that's dangerous to bake in with Docker Hub.
 # 3. Verifying pkg signature from main website should inspire confidence and reduce chance of surprises.
 # Instead fetch, verify, and extract to Docker image
-RUN cd /tmp \
-    wget https://download.bitcoincashnode.org/releases/${VERSION}/SHA256SUMS.${VERSION}.freetrader.txt.asc \
-    grep bitcoin-cash-node-${VERSION}-${ARCH}-linux-gnu.tar.gz SHA256SUMS.${VERSION}.freetrader.txt.asc > SHA25SUM \
-    wget https://download.bitcoincashnode.org/releases/${VERSION}/linux/bitcoin-cash-node-${VERSION}-${ARCH}-linux-gnu.tar.gz \
-    sha256sum -c SHA25SUM \
-    tar -xzvf bitcoin-cash-node-${VERSION}-${ARCH}-linux-gnu.tar.gz -C /opt \
-    ln -sv bitcoin-cash-node-${VERSION} /opt/bitcoin \
+RUN cd /tmp && \
+    wget https://download.bitcoincashnode.org/releases/${VERSION}/SHA256SUMS.${VERSION}.freetrader.txt.asc && \
+    grep bitcoin-cash-node-${VERSION}-${ARCH}-linux-gnu.tar.gz SHA256SUMS.${VERSION}.freetrader.txt.asc > SHA25SUM && \
+    wget https://download.bitcoincashnode.org/releases/${VERSION}/linux/bitcoin-cash-node-${VERSION}-${ARCH}-linux-gnu.tar.gz && \
+    sha256sum -c SHA25SUM && \
+    tar -xzvf bitcoin-cash-node-${VERSION}-${ARCH}-linux-gnu.tar.gz -C /opt && \
+    ln -sv bitcoin-cash-node-${VERSION} /opt/bitcoin && \
     rm -v /opt/bitcoin/bin/bitcoin-qt
 
 FROM ubuntu:latest
